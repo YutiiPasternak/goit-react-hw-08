@@ -1,0 +1,25 @@
+.appBar_wrapper {
+  display: flex;
+  position: relative;
+}
+
+.appBar_wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: -14px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: black;
+}
+
+.userMenu {
+  display: flex;
+  margin-right: auto;
+}
+
+.wrapperIsLoggedIn {
+  display: flex;
+  margin-left: auto;
+  gap: 30px;
+}

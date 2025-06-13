@@ -1,0 +1,37 @@
+.navWrapper {
+  display: flex;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.defaultStyles {
+  text-decoration: none;
+  transition: 250ms ease;
+  color: black;
+  font-size: 26px;
+}
+
+.navigationStyles {
+  text-decoration: none;
+  color: rgb(47, 0, 255);
+  text-shadow: 0 0 5px rgb(255, 0, 0);
+  animation: animationForActiveStyle;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+}
+.wrapperForLoginAndRegister {
+  display: flex;
+  gap: 30px;
+}
+
+@keyframes animationForActiveStyle {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
