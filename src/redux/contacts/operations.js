@@ -1,7 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-axios.defaults.baseURL = "https://goit-react-hw-08-nu-two.vercel.app/";
+axios.defaults.baseURL = "https://connections-api.goit.global/";
 
 const getAuthHeader = (token) => ({
   headers: {
