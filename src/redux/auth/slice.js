@@ -1,23 +1,27 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { register, login, logOut, refreshUser } from "./operations";
 
+const initialState = {
+  user: {
+    name: null,
+    email: null,
+  },
+  token: localStorage.getItem("token") || null,
+  isLoggedIn: !!localStorage.getItem("token"),
+  isRefreshing: false,
+  error: null,
+};
+
 const authSlice = createSlice({
   name: "auth",
-  initialState: {
-    user: {
-      name: null,
-      email: null,
-    },
-    token: null,
-    isLoggedIn: false,
-    isRefreshing: false,
-  },
+  initialState,
   extraReducers: (builder) => {
     builder
       .addCase(register.fulfilled, (state, action) => {
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        localStorage.setItem("token", action.payload.token);
       })
       .addCase(register.rejected, (state, action) => {
         state.error = action.error.message;
@@ -26,11 +30,13 @@ const authSlice = createSlice({
         state.user = action.payload.user;
         state.token = action.payload.token;
         state.isLoggedIn = true;
+        localStorage.setItem("token", action.payload.token);
       })
       .addCase(logOut.fulfilled, (state) => {
-        state.user = null;
+        state.user = { name: null, email: null };
         state.token = null;
         state.isLoggedIn = false;
+        localStorage.removeItem("token");
       })
       .addCase(refreshUser.pending, (state) => {
         state.isRefreshing = true;
